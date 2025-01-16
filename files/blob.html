@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <input type="file" onchange="previewImage(this)">
+    <p>The blob of this file is: <span></span></p>
+    <script>
+        function previewImage(input) {
+            const url = URL.createObjectURL(input.files[0]);
+            document.querySelector('p span').textContent = url;
+        }
+    </script>
+</body>
+</html>
