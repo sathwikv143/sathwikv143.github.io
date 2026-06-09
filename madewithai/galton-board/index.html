@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galton Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Galton Board</h1>
+      <p class="subtitle">Watch balls cascade through pegs and form a bell curve</p>
+    </header>
+
+    <section class="controls">
+      <label>
+        Number of rows
+        <input type="number" id="rows" min="4" max="20" value="12">
+      </label>
+      <label>
+        Number of balls
+        <input type="number" id="balls" min="1" max="500" value="100">
+      </label>
+      <button id="start">Drop Balls</button>
+      <button id="reset" class="secondary">Reset</button>
+    </section>
+
+    <div class="stats">
+      <span id="status">Ready</span>
+      <span id="drop-column">Drop column: 6</span>
+      <span id="dropped">Dropped: 0</span>
+    </div>
+
+    <div class="workspace">
+      <aside class="statistics">
+        <h2>Statistics</h2>
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Total</th>
+              <th scope="col">Current</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Unhit pegs</th>
+              <td id="stat-unhit-pegs-total">0</td>
+              <td id="stat-unhit-pegs">0</td>
+            </tr>
+            <tr>
+              <th scope="row">Empty bins</th>
+              <td id="stat-empty-bins-total">0</td>
+              <td id="stat-empty-bins">0</td>
+            </tr>
+            <tr>
+              <th scope="row">Hit pegs</th>
+              <td id="stat-hit-pegs-total">0</td>
+              <td id="stat-hit-pegs">0</td>
+            </tr>
+            <tr>
+              <th scope="row">Filled bins</th>
+              <td id="stat-filled-bins-total">0</td>
+              <td id="stat-filled-bins">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </aside>
+
+      <div class="main-column">
+        <canvas id="board"></canvas>
+      </div>
+
+      <aside class="trace-modes">
+        <h2>Bin path trace</h2>
+        <div class="trace-options">
+          <label><input type="radio" name="trace-mode" value="most-common" checked> Most common exact</label>
+          <label><input type="radio" name="trace-mode" value="per-row"> Per-row consensus</label>
+          <label><input type="radio" name="trace-mode" value="average"> Average path</label>
+          <label><input type="radio" name="trace-mode" value="overlay"> Weighted overlay</label>
+          <label><input type="radio" name="trace-mode" value="markov"> Markov probable</label>
+          <label><input type="radio" name="trace-mode" value="shortest"> Shortest route</label>
+          <label><input type="radio" name="trace-mode" value="longest"> Longest route</label>
+          <label><input type="radio" name="trace-mode" value="last-n"> Last 10 balls</label>
+          <label><input type="radio" name="trace-mode" value="replay"> Animated replay</label>
+          <label><input type="radio" name="trace-mode" value="compare"> Most vs rarest</label>
+          <label><input type="radio" name="trace-mode" value="drop-column"> Current drop column</label>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
