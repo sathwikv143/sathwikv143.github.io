@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoreboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <select id="gameType" class="toolbar-select" aria-label="Game type">
+        <option value="2">2 Teams</option>
+        <option value="3">3 Teams</option>
+        <option value="multi">Multi Team</option>
+      </select>
+
+      <label class="toolbar-field">
+        <span>Winning Points</span>
+        <input
+          type="text"
+          id="winningPoint"
+          class="toolbar-input"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          maxlength="3"
+          value="21"
+          placeholder="Off"
+          autocomplete="off"
+          aria-label="Winning points (empty or 0 for off)"
+        />
+      </label>
+
+      <label class="toolbar-field">
+        <span>Sets</span>
+        <select id="totalSets" class="toolbar-select" aria-label="Number of sets">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+      </label>
+
+      <div class="multi-controls hidden" id="multiControls">
+        <button type="button" id="addTeamBtn" class="btn" title="Add team">+</button>
+        <button type="button" id="removeTeamBtn" class="btn" title="Remove team">−</button>
+      </div>
+
+      <button type="button" id="resetBtn" class="btn" title="Reset scores">Reset</button>
+      <button type="button" id="themeToggle" class="btn" aria-label="Toggle dark mode" title="Toggle theme">
+        <span class="icon-sun" aria-hidden="true">☀</span>
+        <span class="icon-moon" aria-hidden="true">☾</span>
+      </button>
+    </header>
+
+    <div class="set-bar" id="setBar">
+      <div class="set-nav" id="setNav">
+        <button type="button" id="setPrev" class="btn btn-set" aria-label="Previous set">‹</button>
+        <span class="set-label">Set <span id="setNumber">1 / 3</span></span>
+        <button type="button" id="setNext" class="btn btn-set" aria-label="Next set">›</button>
+      </div>
+      <span class="game-status hidden" id="gameStatus" aria-live="polite"></span>
+    </div>
+
+    <main class="board" id="scoreboard" aria-live="polite"></main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
