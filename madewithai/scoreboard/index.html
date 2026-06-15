@@ -9,53 +9,116 @@
 <body>
   <div class="app">
     <header class="toolbar">
-      <select id="gameType" class="toolbar-select" aria-label="Game type">
-        <option value="2">2 Teams</option>
-        <option value="3">3 Teams</option>
-        <option value="multi">Multi Team</option>
-      </select>
-
-      <label class="toolbar-field">
-        <span>Winning Points</span>
-        <input
-          type="text"
-          id="winningPoint"
-          class="toolbar-input"
-          inputmode="numeric"
-          pattern="[0-9]*"
-          maxlength="3"
-          value="21"
-          placeholder="Off"
-          autocomplete="off"
-          aria-label="Winning points (empty or 0 for off)"
-        />
-      </label>
-
-      <label class="toolbar-field">
-        <span>Sets</span>
-        <select id="totalSets" class="toolbar-select" aria-label="Number of sets">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3" selected>3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
+      <div class="toolbar-cluster">
+        <select id="gameType" class="toolbar-select toolbar-game-type" aria-label="Game type">
+          <option value="2">2 Teams</option>
+          <option value="3">3 Teams</option>
+          <option value="multi">Multi Team</option>
         </select>
-      </label>
 
-      <div class="multi-controls hidden" id="multiControls">
-        <button type="button" id="addTeamBtn" class="btn" title="Add team">+</button>
-        <button type="button" id="removeTeamBtn" class="btn" title="Remove team">−</button>
+        <div class="team-stepper hidden" id="multiControls">
+          <span class="team-stepper__label">Teams</span>
+          <div class="team-stepper__control" role="group" aria-label="Adjust number of teams">
+            <button type="button" id="removeTeamBtn" class="team-stepper__btn" title="Remove team" aria-label="Remove team">−</button>
+            <output id="teamCount" class="team-stepper__value" aria-live="polite">4</output>
+            <button type="button" id="addTeamBtn" class="team-stepper__btn" title="Add team" aria-label="Add team">+</button>
+          </div>
+        </div>
+
+        <div class="toolbar-divider toolbar-divider--teams hidden" aria-hidden="true"></div>
+
+        <label class="toolbar-field">
+          <span>Sets</span>
+          <input
+            type="text"
+            id="totalSets"
+            class="toolbar-input toolbar-input--sm"
+            inputmode="numeric"
+            maxlength="2"
+            value="3"
+            autocomplete="off"
+            aria-label="Number of sets (0 or more)"
+          />
+        </label>
       </div>
 
-      <button type="button" id="resetBtn" class="btn" title="Reset scores">Reset</button>
-      <button type="button" id="themeToggle" class="btn" aria-label="Toggle dark mode" title="Toggle theme">
-        <span class="icon-sun" aria-hidden="true">☀</span>
-        <span class="icon-moon" aria-hidden="true">☾</span>
-      </button>
+      <div class="toolbar-divider" aria-hidden="true"></div>
+
+      <div class="toolbar-cluster">
+        <label class="toolbar-field">
+          <span>Winning Points</span>
+          <input
+            type="text"
+            id="winningPoint"
+            class="toolbar-input toolbar-input--sm"
+            inputmode="numeric"
+            maxlength="3"
+            value="21"
+            placeholder="Off"
+            autocomplete="off"
+            aria-label="Winning points (empty or 0 for off)"
+          />
+        </label>
+      </div>
+
+      <div class="toolbar-divider" aria-hidden="true"></div>
+
+      <div class="toolbar-cluster">
+        <label class="toolbar-field">
+          <span>Add</span>
+          <input
+            type="text"
+            id="scoreIncrement"
+            class="toolbar-input toolbar-input--sm"
+            inputmode="numeric"
+            maxlength="2"
+            placeholder="1"
+            autocomplete="off"
+            aria-label="Score increment (default 1)"
+          />
+        </label>
+
+        <label class="toolbar-field">
+          <span>Minus</span>
+          <input
+            type="text"
+            id="scoreDecrement"
+            class="toolbar-input toolbar-input--sm"
+            inputmode="numeric"
+            maxlength="2"
+            placeholder="1"
+            autocomplete="off"
+            aria-label="Score decrement (default 1)"
+          />
+        </label>
+
+        <label class="toolbar-field">
+          <span>Penalty</span>
+          <input
+            type="text"
+            id="scorePenalty"
+            class="toolbar-input toolbar-input--sm"
+            inputmode="numeric"
+            maxlength="2"
+            placeholder="1"
+            autocomplete="off"
+            aria-label="Penalty amount (default 1)"
+          />
+        </label>
+
+        <label class="toolbar-field toolbar-toggle">
+          <input type="checkbox" id="allowNegative" />
+          <span>Allow negatives</span>
+        </label>
+      </div>
+
+      <div class="toolbar-cluster toolbar-cluster--actions">
+        <button type="button" id="resetBtn" class="btn btn-icon" title="Reset scores" aria-label="Reset scores">↺</button>
+        <button type="button" id="themeToggle" class="btn btn-icon" aria-label="Toggle dark mode" title="Toggle theme">
+          <span class="icon-sun" aria-hidden="true">☀</span>
+          <span class="icon-moon" aria-hidden="true">☾</span>
+        </button>
+      </div>
     </header>
 
     <div class="set-bar" id="setBar">
